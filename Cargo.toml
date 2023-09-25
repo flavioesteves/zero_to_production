@@ -1,4 +1,5 @@
 [package]
+
 name = "zero_to_production"
 version = "0.1.0"
 edition = "2021"
@@ -19,7 +20,21 @@ name = "zero_to_production"
 actix-web= "4.4.0"
 tokio = {version ="1.32.0", features = ["macros", "rt-multi-thread"]}
 serde = {version="1.0.188", features = ["derive"]}
-
-
-[dev-dependencies]
 reqwest = "0.11.20"
+config = "0.13.3"
+
+
+# Using table-like toml syntax to avoid a super-long line!
+[dependencies.sqlx] 
+version = "0.7.1"
+features = [
+  "runtime-tokio",
+  "tls-rustls",
+  "macros",
+  "postgres",
+  "uuid",
+  "chrono",
+  "migrate"
+]
+
+

@@ -1,6 +1,5 @@
 # Interpretation of the book "Zero To Production in Rust"
 
-
 # Cargo
     1. cargo watch -x check
         *  Will run cargo check after every code change
@@ -24,9 +23,7 @@
     1. rustup component add rustfmt
     2. cargo fmt
         * Format the whole project
-    3. cargo fmt -- --check 
-        * Add formatting step to the pipeline
-
+    3. cargo fmt -- --check
 # Security Vulnerabilities
     1. cargo install cargo-audit
     2. cargo audit
@@ -34,3 +31,11 @@
 # Rust ecosystem for test frameworks
     1. rstest
     2. test-case
+
+# Database PostgreSQL
+            Crate       |   Compile-time safety     |       Query Interface     |   Async   |       
+    1. tokio-postgres   |           No              |           SQL             |    Yes    |
+    2. sqlx             |           Yes             |           SQL             |    Yes    |
+    3. diesel           |           Yes             |           DSL             |    NO     |
+
+
