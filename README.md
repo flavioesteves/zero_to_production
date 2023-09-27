@@ -53,5 +53,6 @@
 
         1. Logging: crate log
 
-    - [Observability](https://www.honeycomb.io/what-is-observability)
+    *[Observability](https://www.honeycomb.io/what-is-observability)*
+
 
