@@ -27,3 +27,4 @@ chrono = "0.4"
 sqlx = { version = "0.7", default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
 env_logger = "0.10"
 log= "0.4"
+tracing = {version="0.1", features= ["log"]}

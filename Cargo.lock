@@ -2800,6 +2800,7 @@ dependencies = [
  "serde",
  "sqlx",
  "tokio",
+ "tracing",
  "uuid",
 ]
 

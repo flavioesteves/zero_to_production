@@ -10,7 +10,7 @@
     * It tests pass launches the app with cargo run.
 3. cargo check
     * check if is possibel to compile
-4. carrgo expand
+4. cargo expand
 
 # CI
 
@@ -54,7 +54,8 @@
 -[Observability](https://www.honeycomb.io/what-is-observability)
 - The Facade Pattern
 
-1. Logging: crate log
+1. Logging: crate [log](https://docs.rs/log/0.4.20/log/)
+2. Tracing: crate [tracing](https://docs.rs/tracing/0.1.19/tracing/)
 
 
 
