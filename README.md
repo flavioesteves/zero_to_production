@@ -30,10 +30,12 @@
 2. cargo fmt
     * Format the whole project
 3. cargo fmt -- --check
+
 # Security Vulnerabilities
 
 1. cargo install cargo-audit    
 2. cargo audit
+3. cargo cargo-deps // cargo +nightly udeps
 
 # Rust ecosystem for test frameworks
 
@@ -53,10 +55,18 @@
 - Telemetry Data
 -[Observability](https://www.honeycomb.io/what-is-observability)
 - The Facade Pattern
+- Instrumenting Futures
+
+- tracing_subscriber::filter::EnvFilter
+- tracing_bunyan_formatter::JsonStorageLayer
+- tracing_bunyan_formatter::BunyanFormatterLayer
 
 1. Logging: crate [log](https://docs.rs/log/0.4.20/log/)
 2. Tracing: crate [tracing](https://docs.rs/tracing/0.1.19/tracing/)
+3. Subscriber = crate [tracing-subscriber](https://docs.rs/tracing-subscriber/0.3.17/tracing_subscriber/)
+4. Tracing Bunyan Formatter = crate [tracing_bunyan_formatter](https://docs.rs/tracing-bunyan-formatter/0.3.9/tracing_bunyan_formatter/)
+# Rust Patterns
 
-
+- Resource Acquisition Is Initialization (RAII)
 
 
