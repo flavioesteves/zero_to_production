@@ -65,6 +65,9 @@
 2. Tracing: crate [tracing](https://docs.rs/tracing/0.1.19/tracing/)
 3. Subscriber = crate [tracing-subscriber](https://docs.rs/tracing-subscriber/0.3.17/tracing_subscriber/)
 4. Tracing Bunyan Formatter = crate [tracing_bunyan_formatter](https://docs.rs/tracing-bunyan-formatter/0.3.9/tracing_bunyan_formatter/)
+5. bunyan CLI (The original `bunyan` requires NPM, but can be installed a Rust-port with `cargo install bunyan`)
+    - to test: TEST_LOG=true cargo test health_check_works | bunyan
+
 # Rust Patterns
 
 - Resource Acquisition Is Initialization (RAII)
