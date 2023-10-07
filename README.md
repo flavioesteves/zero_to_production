@@ -68,6 +68,11 @@
 5. bunyan CLI (The original `bunyan` requires NPM, but can be installed a Rust-port with `cargo install bunyan`)
     - to test: TEST_LOG=true cargo test health_check_works | bunyan
 
+
+# Secrecy
+
+1. cargo [secrecy](https://docs.rs/secrecy/0.8.0/secrecy/) 
+
 # Rust Patterns
 
 - Resource Acquisition Is Initialization (RAII)
