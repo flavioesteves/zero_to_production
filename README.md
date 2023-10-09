@@ -82,6 +82,8 @@
 # Going Live
 
 - Docker image deployed in [DigitalOcean's APP Platform](https://www.digitalocean.com/docs/app-platform/)
--  [cargo-chef](https://github.com/LukeMathWalker/cargo-chef)
+- [cargo-chef](https://github.com/LukeMathWalker/cargo-chef)
 
-- Skipped pages [P123 5.4.1, ]
+- cargo serde-aux
+
+
