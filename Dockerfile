@@ -1,22 +1,29 @@
 # Builder Stage
 
 # We use the lastest Rust stable release as base image
-FROM rust:1.73.0 AS builder
-
-# Let's switch our working directory to `app` (equivalent to `cd app`)
-# The `app` folder will be created for us by Docker in case it does not
-# exist aready
+FROM lukemathwalker/cargo-chef:latest-rust-1.72.0 as chef
 WORKDIR /app
 
 # Install the required system dependencies for our linking configuration
 RUN apt update && apt install lld clang -y
 # Copy all files from our working environment to our Docker image
+
+FROM chef as planner
 COPY . .
 
+# Compute a lock-file file for our project
+RUN cargo chef prepare --recipe-path recipe.json
+
+FROM chef as builder
+COPY --from=planner /app/recipe.json recipe.json
+# Build our project dependencies, not our application!
+RUN cargo chef cook --release --recipe-path recipe.json
+# Up to this point, if our dependecy tree stays the same,
+# all layers should be cached
+COPY . .
 ENV SQLX_OFFLINE true
 # Let's build our binary
-# We'll use the release profile to make it fast
-RUN cargo build --release
+RUN cargo build --release --bin zero_to_production
 
 
 # Runtime stage

@@ -74,7 +74,7 @@
 # Secrecy
 
 1. cargo [secrecy](https://docs.rs/secrecy/0.8.0/secrecy/) 
-
+        
 # Rust Patterns
 
 - Resource Acquisition Is Initialization (RAII)
@@ -82,4 +82,6 @@
 # Going Live
 
 - Docker image deployed in [DigitalOcean's APP Platform](https://www.digitalocean.com/docs/app-platform/)
-- 
+-  [cargo-chef](https://github.com/LukeMathWalker/cargo-chef)
+
+- Skipped pages [P123 5.4.1, ]
