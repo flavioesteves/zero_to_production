@@ -60,6 +60,8 @@
 - tracing_subscriber::filter::EnvFilter
 - tracing_bunyan_formatter::JsonStorageLayer
 - tracing_bunyan_formatter::BunyanFormatterLayer
+- tracing-actix-web
+
 
 1. Logging: crate [log](https://docs.rs/log/0.4.20/log/)
 2. Tracing: crate [tracing](https://docs.rs/tracing/0.1.19/tracing/)
