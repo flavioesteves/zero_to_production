@@ -79,4 +79,7 @@
 
 - Resource Acquisition Is Initialization (RAII)
 
+# Going Live
 
+- Docker image deployed in [DigitalOcean's APP Platform](https://www.digitalocean.com/docs/app-platform/)
+- 
