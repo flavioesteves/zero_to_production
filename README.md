@@ -86,4 +86,8 @@
 
 - cargo serde-aux
 
+# Testing
 
+- crate [fake](https://crates.io/crates/fake)
+- crate [quickcheck](https://crates.io/crates/quickcheck)
+- crate [proptest](https://crates.io/crates/proptest)
