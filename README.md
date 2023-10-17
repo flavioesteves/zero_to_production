@@ -109,13 +109,13 @@
 
 # Deployment Strategies
 
-- Naive Deployment
+- Naive Deployment  
     Version A of our service is running in production and we want to roll out version B:
         * We switch off all instances of version A running the cluster;
         * We spin up new instances of our application running version B;
         * We start serving traffic using version B.
 
-- Load Balancers
+- Load Balancers  
     We have multiple copies of our application running behind a load balancer.
         * Load balanceers usually support adding (and removing) backends dyanamically.
         * Horizontal Scaling
@@ -127,9 +127,21 @@
             If a backend fails to respond with a success status code for a long enough time period it is marked as unhealthy
             and removed.
 
-- Rolling Update Deployments
+- Rolling Update Deployments  
     We have x copies of Version A, we add a copy of Version B and then we start to remove/replace Version A into Version B until all running version are Version B.
 
 
-# Deployments & Migrations
+# Database Migrations
 
+- State Is Kept Outside The Application  
+    In the Load Balacing all the backends are talking to the same database to query and manipulate the same state.
+
+- Deployments And Migrations  
+    The old and the new version of the application are using the same database at the same time.
+
+- Multi-step Migrations
+
+ - Example: A New Mandatory Column
+    1. Add as Optional
+    2. Start Using The New Column
+    3. Backfill And Mark As NOT NULL
