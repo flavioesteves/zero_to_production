@@ -91,3 +91,45 @@
 - crate [fake](https://crates.io/crates/fake)
 - crate [quickcheck](https://crates.io/crates/quickcheck)
 - crate [proptest](https://crates.io/crates/proptest)
+
+    * REST API:
+        - crate[wiremock](https://crates.io/crates/wiremock)
+
+
+# Email Delivery Component
+
+- [SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)
+- Email providers: [AWS SES](https://aws.amazon.com/ses/), [SendGrid](https://sendgrid.com/), [MailGun](https://mailgun.com), [Mailchimp](https://mailchimp.com), [Postmark](https://postmarkapp.com)
+- For this porject: Postmark
+
+# REST API 
+
+- crate [reqwest](https://crates.io/crates/reqwest)
+
+
+# Deployment Strategies
+
+- Naive Deployment
+    Version A of our service is running in production and we want to roll out version B:
+        * We switch off all instances of version A running the cluster;
+        * We spin up new instances of our application running version B;
+        * We start serving traffic using version B.
+
+- Load Balancers
+    We have multiple copies of our application running behind a load balancer.
+        * Load balanceers usually support adding (and removing) backends dyanamically.
+        * Horizontal Scaling
+        We can add more capacity when experiencing a traffic spike by spinning up more replicas of our application
+        * Health Checks
+            * Passive - the load balancer looks at the distribuition of status codes/latency for each backend
+            to determine if they are healthy or not;
+            * Active - the load balancer is configured to send a health check request to each backend on a schedule.
+            If a backend fails to respond with a success status code for a long enough time period it is marked as unhealthy
+            and removed.
+
+- Rolling Update Deployments
+    We have x copies of Version A, we add a copy of Version B and then we start to remove/replace Version A into Version B until all running version are Version B.
+
+
+# Deployments & Migrations
+
