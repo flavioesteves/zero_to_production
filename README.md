@@ -145,3 +145,6 @@
     1. Add as Optional
     2. Start Using The New Column
     3. Backfill And Mark As NOT NULL
+
+
+# Databse Transictions
