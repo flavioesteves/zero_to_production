@@ -139,7 +139,7 @@
 - Deployments And Migrations  
     The old and the new version of the application are using the same database at the same time.
 
-- Multi-step Migrations
+    - Multi-step Migrations
 
  - Example: A New Mandatory Column
     1. Add as Optional
@@ -147,4 +147,16 @@
     3. Backfill And Mark As NOT NULL
 
 
-# Databse Transictions
+# Databse Transactions
+
+- Transactions are a way to group together related operations in a single unit of work.The database guarantees that all operations within a transaction will succeed
+or fail together: the database will never be left in a state where the effect of only a subset of the queries in a transaction is visible.
+
+- Start of a transation in Postgres: BEGIN
+- End of a transaction in Postgres: COMMIT
+- Trigger a rollback in Postgres: ROLLBACK
+
+- To dive deep in this topic, was recommended this book ["Designing Data Intensive Applications"](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)
+- Sqlx provides a dedicated API.
+
+
