@@ -159,4 +159,27 @@ or fail together: the database will never be left in a state where the effect of
 - To dive deep in this topic, was recommended this book ["Designing Data Intensive Applications"](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)
 - Sqlx provides a dedicated API.
 
+# Errors
 
+- Errors serve two main purposes:
+    1. Control flow (i.e. determine what to next): is scripted, all information required to take a decision on what to do next must be accessible to a machine.  
+    We use type(e.g. enum variants), methos and fields for internal errors.  
+    We rely on status codes for errors at the edge.
+
+    2. Reporting (e.g investigate, after the fact , what went wrong on): are primarily consumed by humans. The content has to be tuned depending on the audience.  
+    An operator has access to the internals of the system - they should be provided with as much context as possible ont the failure mode
+    We rely on "Logs/trace" internal and at the edge "Response Body"
+
+- Can be also distinguish erros based on their location:
+    1. Internal (i.e. a function calling another function within our application);
+    2.  At the edge (i.e. an API request that we failed to fulfill)
+
+- The Error trait is, first and foremost, a way to semantically mark our type as being an error. It helps a reader of our codebase to immediately spot its purpose.
+It is also a way for the Rust community to standardise on the minimum requirements for a good error:
+    * it should provide different representations (Debug and Display), tuned to different audiences;
+    * it should be possible to look at the underlying cause of the error, if any (source).
+
+# Trait Objects
+
+- dyn Error is a trait object ->  Trait objects, just like generic type parameters, are way to archieve polymorphism in Rust: invoke
+different implementations of the same interface. Generic types are resolved at compile-time (static dispatch), trait objects incur a runtime cost (dynamic dispatch)
