@@ -161,6 +161,8 @@ or fail together: the database will never be left in a state where the effect of
 
 # Errors
 
+- Error should be logged when they are handled. To avoid reporting the same information in more than 1 place.
+
 - Errors serve two main purposes:
     1. Control flow (i.e. determine what to next): is scripted, all information required to take a decision on what to do next must be accessible to a machine.  
     We use type(e.g. enum variants), methos and fields for internal errors.  
@@ -177,11 +179,16 @@ or fail together: the database will never be left in a state where the effect of
 - The Error trait is, first and foremost, a way to semantically mark our type as being an error. It helps a reader of our codebase to immediately spot its purpose.
 It is also a way for the Rust community to standardise on the minimum requirements for a good error:
     * it should provide different representations (Debug and Display), tuned to different audiences;
-    * it should be possible to look at the underlying cause of the error, if any (source).
+    * it should be possible to look at the underlying cause of the error, if any (source).  
+
+    |----------------------------------------------------|
+    |             |         Internal       | At the edge |
+    |----------------------------------------------------|
+    |Control Flow | Types, methods, fields | Status Codes|
+    |Reporting    | Logs/traces            | Respose body|
 
 # Trait Objects
 
 - dyn Error is a trait object ->  Trait objects, just like generic type parameters, are way to archieve polymorphism in Rust: invoke
 different implementations of the same interface. Generic types are resolved at compile-time (static dispatch), trait objects incur a runtime cost (dynamic dispatch)
 
-P264 8.4

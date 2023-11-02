@@ -17,6 +17,7 @@ path = "src/main.rs"
 name = "zero_to_production"
 
 [dependencies]
+anyhow ="1.0"
 actix-web= "4.4"
 tokio = {version ="1.32", features = ["macros", "rt-multi-thread"]}
 serde = {version="1.0", features = ["derive"]}
