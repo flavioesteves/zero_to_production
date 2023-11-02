@@ -43,7 +43,7 @@ unicode-segmentation = "1.10"
 claim = "0.5"
 validator ="0.16"
 rand = {version="0.8", features=["std_rng"]}
-
+thiserror = "1"
 
 [dev-dependencies]
 once_cell ="1.18"
