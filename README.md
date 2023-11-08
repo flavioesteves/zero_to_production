@@ -192,3 +192,4 @@ It is also a way for the Rust community to standardise on the minimum requiremen
 - dyn Error is a trait object ->  Trait objects, just like generic type parameters, are way to archieve polymorphism in Rust: invoke
 different implementations of the same interface. Generic types are resolved at compile-time (static dispatch), trait objects incur a runtime cost (dynamic dispatch)
 
+
