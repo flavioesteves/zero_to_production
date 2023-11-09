@@ -192,4 +192,32 @@ It is also a way for the Rust community to standardise on the minimum requiremen
 - dyn Error is a trait object ->  Trait objects, just like generic type parameters, are way to archieve polymorphism in Rust: invoke
 different implementations of the same interface. Generic types are resolved at compile-time (static dispatch), trait objects incur a runtime cost (dynamic dispatch)
 
+# Securing API
 
+- Basic authentication
+- Session based authentication
+- OAuth 2.0
+- OpendId Connect
+- JSON Web Tokens (JWTs)
+
+1. Verify identity of API callers:
+    - Something the know (passwords, PINs, security questions)
+    - Something they have (smartphone, using an authenticator app)
+    - Something they are (fingerprints, Apple's Face ID)
+
+    * Drawbacks:
+        1. Something they Know: Passwords must be long - short ones are vulnerable to brute-force.
+        2. Something they Have: Smartphones and U2F keys can be lost, locking the  user out of their accounts and can be stolen.
+        3. Something they Are: Biometrics cannot be changed.
+
+    * Multi-factor Authentication(MFA)
+        1. Provide the user at least with two different tyes of authentication factors in order to get access
+
+2. Password-based Authentication    
+    * Basic Authentication: RFC 2617, RFC 7617
+    * The API must look for the Authorization header in incoming request, structured as follow:
+        - Authorization: Basic <enconded credentials>
+        - where <enconded credentials> is the base64-encoding of {username}:{password}.
+
+
+P300 10.2.3
