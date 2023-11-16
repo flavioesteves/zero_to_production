@@ -215,9 +215,35 @@ different implementations of the same interface. Generic types are resolved at c
 
 2. Password-based Authentication    
     * Basic Authentication: RFC 2617, RFC 7617
-    * The API must look for the Authorization header in incoming request, structured as follow:
+    * The API must look for the Authorization header in incoming request,
         - Authorization: Basic <enconded credentials>
         - where <enconded credentials> is the base64-encoding of {username}:{password}.
+    
+    * Use Cryptographic hash function: MD5, SHA-1, SHA-2. SHA-3, KangarooTwelve
+    * Output Size options: 224, 256, 384, 512
+    * Selected for this usecase: SHA3-256
+    * crate sha3
 
+    * Implementation of the crate Argon2: The Open Web Application Security Project (OWASP)
+    - Use Argon2id with a minimum configuration of 15 MiB of memory, an iteration count of 2, and 1 degree of parallelism.
+    - If Argon2id is not available use bcrypt with a work factor of 10 or more and with a password limit of 72 bytes.
+    - For Legacy systems usnig scrypt, use a minimum CPU/memory cost parameterof(2^16), a minimum block size of 8 (1024 bytes),
+    and a parallelization parameter of 1.
+    - IF FIPS-140 compliance is required, use PBKDF2 with a work factor a 310.000 or more and set with an internal hash function
+    of HMAC-SHA-256.
+    - Consider using a pepper to provide additional defense in depth (though alone, it provides no additional secure characteristics).
 
-P300 10.2.3
+    * PHC string format
+    * TLS: Transport Layer Security
+P319
+
+3. Password Reset
+    * Interaction Types
+     - Other APIs (machine-to-machine)
+     - A Person, via a browser
+     - Another API, on behalf of a person
+
+    * Machine To Machine
+     - Same organization mutual TLS (mTLS)
+    
+    * Client Credentials via OAuth2: [client credentials flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
