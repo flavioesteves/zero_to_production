@@ -247,3 +247,13 @@ P319
      - Same organization mutual TLS (mTLS)
     
     * Client Credentials via OAuth2: [client credentials flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
+     - JWT validation [riddled with dangerous edge cases](https://blog.mathpresso.com/jwts-and-their-pitfalls-ffe8c9dba927)
+
+    * Person Via Browser
+     - Session-base authentication
+
+    * Federeted identity
+
+    * Machine to machine, on behalf of a person
+
+P325 10.6.1
