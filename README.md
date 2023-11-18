@@ -256,4 +256,14 @@ P319
 
     * Machine to machine, on behalf of a person
 
-P325 10.6.1
+# Cross-Site Scripting (XSS)
+    
+- Crate htmlescape
+
+# Message Authentication Codes
+
+* Adding an HMAC Tag To Protect Query parameters
+
+- crate hmac, sha2
+
+P339
