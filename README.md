@@ -277,4 +277,29 @@
 [FlashMessages](https://docs.rs/actix-web-flash-messages/latest/actix_web_flash_messages/struct.FlashMessage.html)
 
 
-P357
+# Sessions
+
+- Session-base authentication is a strategy to avoid asking users to provide their password on every single page.
+Useers are asked to authenticate once, via a login form: id successful, the server generates a one-time secret - an authenticated session token.
+
+- [OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) provides extensive guidante on how to secure sessions.
+
+## Session Store
+
+- OWASP recommends using cryptographically secure pseudorandom number generator (CSPRNG)
+- Session state
+
+## Choosing A Session Store
+
+- During a lifecycle of a session we need o perform the following operations (CRUD: create, read, update, delete):
+    * creation: when a user logs in;
+    * retrieval: using the session tokens extracted from the cookie attached to the incoming requests;
+    * update: when a logged-in user performs some actions that lead to a change in their session state;
+    * deletion: when user logs out
+
+
+## REDIS
+- Redis is an in-memory database: it uses RAM instead of disk for storage, trading off durability for speed.
+- Rust Dependencies: actix-session = {version="0.8", features =["redis-rs-tls-session"]}
+
+
