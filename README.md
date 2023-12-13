@@ -302,4 +302,7 @@ Useers are asked to authenticate once, via a login form: id successful, the serv
 - Redis is an in-memory database: it uses RAM instead of disk for storage, trading off durability for speed.
 - Rust Dependencies: actix-session = {version="0.8", features =["redis-rs-tls-session"]}
 
+[Session fixation attacks](https://acrossecurity.com/papers/session_fixation.pdf)
 
+
+P379  password/post.rs
