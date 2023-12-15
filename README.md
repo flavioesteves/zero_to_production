@@ -305,4 +305,4 @@ Useers are asked to authenticate once, via a login form: id successful, the serv
 [Session fixation attacks](https://acrossecurity.com/papers/session_fixation.pdf)
 
 
-P379  password/post.rs
+P383
