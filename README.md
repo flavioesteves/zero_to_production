@@ -230,8 +230,6 @@
         * PHC string format
         * TLS: Transport Layer Security
 
-    P319
-
 3.  Password Reset
 
     - Interaction Types
@@ -305,4 +303,56 @@ Useers are asked to authenticate once, via a login form: id successful, the serv
 [Session fixation attacks](https://acrossecurity.com/papers/session_fixation.pdf)
 
 
-P387
+# Failure Modes
+
+## Invalid Inputs
+- The body is malformed or the user has not authenticated.
+
+## Network I/O
+- Problems might arise when we interact with other machines over the network.
+
+## Database
+- Rety process 
+- Give up by returning an error to the user
+
+## Postmark - API Errors
+- Dealing with a workflow, a combination of multiple sub-tasks
+
+## Application Crashes
+- Application could crash it any time, for example could run out of memory or the server it is running on mght abruptly terminated (welcome to the cloud!)
+
+## Author Actions
+- Issues in the interaction betweem the author and the API
+
+# Indempotency
+- Retry-safety has a dramatic impact on the ergonomics of an API. It is substantially easier to write a reliable API client if you can safely retru when something goes wrong.
+- Do not have a clear industry-accepted definitio, it is a complicated topic subject.
+- An API endppoint is retry-safe(or idempotent) if the caller was no way to observe if a request has benn sent to the server once or multiple times.
+
+## Indempotency Keys
+- The caller generates aunique identifier, the idempotency key, for every state-altering operation they want to perform.
+The idempotency key is attached to the outgoing request, usually as an HTTP header. With this approach the server could spot the duplicates:
+    * two identical requests, different idempotency keys = two distinct operations;
+    * two identical requests, same idempotency key = a single operation, the second request is a duplicate;
+    * two different requests, same idempotency key = the first request is processed, the second one is rejected.
+
+## Concurrent Requests
+- Introduce synchronization, so could solve the following issue: i.e the second request reaches the server before it finishes processing the first one?
+- The implementation of synchronization in this case could te those two options:
+    * Reject the second request by returning a 409 Conflict
+    * Wait until the first request completes processing, this is more transparent to the caller.
+But both options are viable.
+    
+## Implementation Strategies
+- State: processing the first request and then store its idempotency key next to the HTTP response that was about to be returned.
+When a retry comes in, look for a match in the store against its idempotency key, fetch the saved HTTP response and return it to the caller
+The entire handler logic is short-circuited - it never gets executed. Preventing duplicate deliveries.
+
+- Stateless: for every subscriber, deterministically generates a enw idempotency key using their subscriber id, the newsletter content and
+the idempotency key attached to the incoming request. When retry comes in, executes the same processing logic - this leads tp the same sequence
+of HTTP calls, using the same idempotency keys. Assuming their idempotency implementation is sound, no new email is going to be dispatched.
+
+- Stateless approach is easy to implement but the time beetween the process of retry could lead to a symptom of a deeper discrepancy.
+
+## Indempotency Store
+In this case could be Redis(unfortunately it is a limiting choice to new requirements) or PostgresSql
