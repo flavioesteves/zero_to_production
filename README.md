@@ -356,3 +356,19 @@ of HTTP calls, using the same idempotency keys. Assuming their idempotency imple
 
 ## Indempotency Store
 In this case could be Redis(unfortunately it is a limiting choice to new requirements) or PostgresSql
+
+## Synchronization
+- Cross-request synchronization before start processing subscribers
+- Expected:
+    * if the first request completed, should return the saved response.
+    * if the first request is still ongoing, we want to wait.
+
+## Backward Recovery
+- Backward recovery tries to achieve a semantic rollback by executing compensating actions.
+
+## Forward Recovery
+- Passive recovery: pushes on the API caller the responsability to drive the workflow to completion.
+- Active recovery: instead not require the caller to do anything apart from kicking off the workflow. The system must self-heal.
+Healing would happen asynchronously - outside the lifecycle of the original request.
+
+P421 11.10.4.3
