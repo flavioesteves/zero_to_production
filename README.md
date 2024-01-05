@@ -371,4 +371,3 @@ In this case could be Redis(unfortunately it is a limiting choice to new require
 - Active recovery: instead not require the caller to do anything apart from kicking off the workflow. The system must self-heal.
 Healing would happen asynchronously - outside the lifecycle of the original request.
 
-P421 11.10.4.3
